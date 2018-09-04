@@ -1,29 +1,44 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="fondo">
+    <span class="texto">Hola, este es el componente App.vue</span>
+    <Home></Home>
+    <Hijo />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Home from './views/Home.vue'
+import Hijo from '@/components/Hijo'
+
+export default {
+  components: {
+    Home: Home,
+    Hijo: Hijo
   }
 }
+</script>
+
+
+<style>
+
+.fondo {
+  background-color:darkslategray;
+  border-style: solid;
+  border-width: 10px;
+  border-color:teal;
+  padding: 100px;
+  width: 800px;
+  display: block;
+}
+
+.texto {
+  color: rgb(226, 226, 226);
+  margin: 0 auto;
+  display: block;
+  width: 600px;
+  font-weight: 900;
+  text-align: center;
+  font-size: 20pt;
+}
+
 </style>
