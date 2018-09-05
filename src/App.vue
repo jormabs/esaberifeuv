@@ -1,44 +1,66 @@
 <template>
-  <div class="fondo">
-    <span class="texto">Hola, este es el componente App.vue</span>
-    <Home></Home>
-    <Hijo />
-  </div>
+  <v-app>
+    <span>{{titulo}} - {{anio}}</span>
+    <br>
+    <div>
+      <span>
+        {{nombreCompleto}}
+      </span>
+      <br>
+      <span>
+        Edad: {{edadUsuario}}
+      </span>
+      <br>
+      <span>
+        Email: <input class="texto" type="text" v-model="usuario.email"> {{usuario.email}}
+      </span>
+      <br>
+      <span>
+        ¿Hijos?: <input type="checkbox" v-model="usuario.hijos"> {{tieneHijos}}
+      </span>
+    </div>
+  </v-app>
 </template>
 
 <script>
-import Home from './views/Home.vue'
-import Hijo from '@/components/Hijo'
 
 export default {
-  components: {
-    Home: Home,
-    Hijo: Hijo
+  name: 'App',
+  data() {
+    return {
+      titulo: 'Lienzos',
+      anio: 2018,
+      usuario: {
+        nombres: 'Juan Carlos',
+        apellidos: 'López Martinez',
+        fechaNacimiento: new Date(1994, 5, 10),
+        email: '',
+        hijos: true
+      }
+    }
+  },
+  computed: {
+    nombreCompleto() {
+      return this.usuario.nombres + ' ' + this.usuario.apellidos
+    },
+    edadUsuario() {
+       let fechaActual = new Date()
+       var diferencia = fechaActual - this.usuario.fechaNacimiento
+       return Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25))
+    },
+    tieneHijos() {
+      return this.usuario.hijos ? 'Sí' : 'No'
+    }
   }
 }
 </script>
 
-
 <style>
-
-.fondo {
-  background-color:darkslategray;
-  border-style: solid;
-  border-width: 10px;
-  border-color:teal;
-  padding: 100px;
-  width: 800px;
-  display: block;
-}
-
 .texto {
-  color: rgb(226, 226, 226);
-  margin: 0 auto;
-  display: block;
-  width: 600px;
-  font-weight: 900;
-  text-align: center;
-  font-size: 20pt;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  margin: 5px;
 }
-
 </style>
+
